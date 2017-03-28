@@ -1,10 +1,10 @@
 
 public class Edge implements Comparable<Edge> {
-	private final int v;
-	private final int w;
+	private final Vertex v;
+	private final Vertex w;
 	private final double weight;
 	
-	public Edge(int v, int w, double weight){
+	public Edge(Vertex v, Vertex w, double weight){
 		this.v = v;
 		this.w = w;
 		this.weight = weight;
@@ -15,14 +15,14 @@ public class Edge implements Comparable<Edge> {
 	}
 	
 	public int either(){
-		return v;
+		return v.uid;
 	}
 	
 	public int other(int vertex){
-		if (vertex == v)
-			return w;
-		else if (vertex == w)
-			return v;
+		if (vertex == v.uid)
+			return w.uid;
+		else if (vertex == w.uid)
+			return v.uid;
 		else throw new IllegalArgumentException();
 	}
 	
