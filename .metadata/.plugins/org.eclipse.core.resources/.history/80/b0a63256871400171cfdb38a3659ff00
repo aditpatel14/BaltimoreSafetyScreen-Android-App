@@ -30,7 +30,7 @@ public class DataManipulation {
 		Location tofind = new Location(39.2970007586, -76.5793864662);
 		
 		//change last parameter for different threshold---------------------VVVVV
-		ArrayList<Arrest> closestList =  findClosestArrests(sorted, tofind, 0.005);
+		ArrayList<Arrest> closestList =  findClosestArrests(sorted, tofind, 0.00005);
 
 		Arrest[] closefind = closestList.toArray(new Arrest[closestList.size()]);
 		System.out.println("\nPrinting the # of close arrests:\n" 
