@@ -1,15 +1,16 @@
+import java.util.ArrayList;
 
 public class EdgeWeightedGraph {
 	private final int V;
 	private int E;
-	private Bag<Edge>[] adj;
+	private ArrayList<Edge>[] adj;
 	
 	public EdgeWeightedGraph(int V){
 		this.V = V;
 		this.E = E;
-		adj = (Bag<Edge>[]) new Bag[V];
+		adj = (ArrayList<Edge>[]) new ArrayList[V];
 		for (int v = 0; v < V; v++)
-			adj[v] = new Bag<Edge>();
+			adj[v] = new ArrayList<Edge>();
 	}
 	
 	public void addEdge(Edge e){
