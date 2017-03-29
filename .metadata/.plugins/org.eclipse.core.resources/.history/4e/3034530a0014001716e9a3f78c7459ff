@@ -1,0 +1,210 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class DataManipulation {
+	public static ArrayList<Arrest> arrestList = new ArrayList<Arrest>();
+
+	public static void main(String[] args){
+		fillArrestList();
+		
+		//sort arrestList by location
+		Arrest[] sorted = arrestList.toArray(new Arrest[arrestList.size()]);
+		sorted = MergeSort.mergeSort(sorted);
+		System.out.println();
+		for(Arrest a:sorted){
+			System.out.println(a.toString());
+		}		
+		
+		System.out.println();
+
+		//search arrestList by location
+		BinarySearch.binSearch(sorted, new Location(39.2970007586, 76.5793864662));
+		
+		Location tofind = new Location(39.2970007586, -76.5793864662);
+		ArrayList<Arrest> closestList =  findClosestArrests(sorted, tofind, 0.005);
+		Arrest[] closefind = closestList.toArray(new Arrest[closestList.size()]);
+		System.out.println(closefind.length);
+		for(Arrest c: closefind){
+			System.out.println(c.toString());
+		}	
+	}
+	
+	private static ArrayList<Arrest> findClosestArrests(/*TYPE MAY BE CHANGED*/Arrest[] arrests, Location spot, double threshold){
+		ArrayList<Arrest> closest = new ArrayList<Arrest>();
+	
+		for (int i = 0; i < arrests.length; i++){
+			if(spot.withinRegion(arrests[i].getLocation(), threshold)){
+				closest.add(arrests[i]);
+			}
+		}
+		return closest;
+	}
+	
+	
+	private static void fillArrestList(){
+		ArrayList<ArrayList<String>> list = readInput();
+		System.out.println(list.get(0).toString());
+
+		for(int i = 1; i < 111; i++){
+			int arrestId = stringToArrestId(list.get(i).get(0));
+			int age = stringToAge(list.get(i).get(1));
+			String sex = list.get(i).get(2);
+			String race = list.get(i).get(3);
+			Date date = stringToDate(list.get(i).get(4));
+			Time time = stringToTime(list.get(i).get(5));
+			String arrestLocation = list.get(i).get(6);
+			String incidentOffense = list.get(i).get(7);
+			String incidentLocation = list.get(i).get(8);
+			String charge = list.get(i).get(9);
+			String chargeDescription = list.get(i).get(10);
+			String district = list.get(i).get(11);
+			int post = stringToPost(list.get(i).get(12));
+			String neighborhood = list.get(i).get(13);
+			Location location = stringToLocation(list.get(i).get(14));
+
+			Arrest a = new Arrest(arrestId,	age, sex, race, date, time,	
+					arrestLocation,	incidentOffense, incidentLocation, charge,
+					chargeDescription, district, post, neighborhood, location);
+			
+			arrestList.add(a);
+			System.out.println(a.toString());
+		}
+	}
+	
+	private static Date stringToDate(String string) {
+		if(string.equals("blank")){
+			return new Date(-1,-1,-1);
+		}
+		String[] temp = string.split("[//]");
+		int d = Integer.parseInt(temp[0]);
+		int m = Integer.parseInt(temp[1]);
+		int y = Integer.parseInt(temp[2]);
+		
+//		System.out.println(y + " "+m+" "+ d);
+		return new Date(d,m,y);
+	}
+	private static Time stringToTime(String string) {
+		if(string.equals("blank")){
+			return new Time(-1,-1);
+		}
+		String[] temp = string.split("[:]");
+		int h = Integer.parseInt(temp[0]);
+		int m = Integer.parseInt(temp[1]);
+		
+//		System.out.println(h+ " "+m);
+		return new Time(h,m);
+	}
+	private static int stringToPost(String s){
+		if(s.equals("blank"))
+			return -1;
+		return Integer.parseInt(s);
+	}
+	private static int stringToArrestId(String s){
+		if(s.equals("blank"))
+			return -1;
+		return Integer.parseInt(s);
+	}
+	
+	private static int stringToAge(String s){
+		if(s.equals("blank"))
+			return -1;
+		return Integer.parseInt(s);
+	}
+
+	private static Location stringToLocation(String loc) {
+		if(loc.equals("blank")){
+			return new Location(-1,-1);
+		}
+		loc = loc.replaceAll( "[\"() ]" , "" );
+		String[] locationPoints = loc.split("[,]");
+		double x = Double.parseDouble(locationPoints[0]);
+		double y = Double.parseDouble(locationPoints[1]);
+//		System.out.println(x + " " + y);
+		return new Location(x,y);
+	}
+
+	private static ArrayList<ArrayList<String>> readInput(){
+		ArrayList<ArrayList<String>> list = new ArrayList<ArrayList<String>>();
+
+		try {		
+			Scanner input = new Scanner(new File("data/BPD_Arrests_Formatted.txt"));
+			int counter = 0;
+			while(input.hasNext()){
+
+				//Scans line from input file into string
+				String current = input.nextLine();
+
+				//edits string to remove opening and closing brackets
+				current = current.replaceAll( "[\t]" , "%" );
+
+
+				//Splits String to remove unnecessary characters and makes array
+				String[] temp = current.split("[%]");
+
+				//				System.out.println(counter+" "+temp.length + " " +Arrays.toString(temp));
+				//				System.out.println(counter);
+				counter++;
+
+				ArrayList<String> item = new ArrayList<String>();
+				for(int i = 0; i<temp.length; i++){
+					String itemParse = temp[i];
+					item.add(itemParse);
+				}
+
+				//				String s2 = String.format("%-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-100s %-35s %-35s %-40s %-40s",
+				//					temp[0],
+				//					temp[1],
+				//					temp[2],
+				//					temp[3],
+				//					temp[4],
+				//					temp[5],
+				//					temp[6],
+				//					temp[7],
+				//					temp[8],
+				//					temp[9],
+				//					temp[10],
+				//					temp[11],
+				//					temp[12],
+				//					temp[13],
+				//					temp[14]						
+				//					);
+				//				
+				//				writeToFile(s2);
+
+				//Adds array made form scanned string into jobs ArrayList to used for testing
+				list.add(item);
+			}
+			input.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		}
+		return list; 
+
+	}
+
+
+	/**Method used to write test case results to output.txt file
+	 * 
+	 * @param s, String to be written to output.txt
+	 */
+	private static void writeToFile(String s){
+		try {	
+			FileWriter f = new FileWriter("data/output.txt", true);
+			PrintWriter out = new PrintWriter(new BufferedWriter(f));
+			out.println(s);
+			out.close();
+		} catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+

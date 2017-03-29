@@ -1,8 +1,6 @@
-
 /**
  * Created by Adit on 2017-03-22.
  */
-
 public class Arrest implements Comparable<Arrest>{
     private int ArrestID;
     private int age;
@@ -186,9 +184,4 @@ public class Arrest implements Comparable<Arrest>{
 	public void setLocation(Location location) {
 		this.location = location;
 	}
-	
-
- 
-
-
 }

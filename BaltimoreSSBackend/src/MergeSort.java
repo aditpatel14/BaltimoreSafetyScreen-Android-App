@@ -29,5 +29,4 @@ public class MergeSort {
 		}
 		return mergedArr;		
 	}
-	
 }

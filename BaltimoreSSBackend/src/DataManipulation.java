@@ -8,33 +8,58 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-
-
 public class DataManipulation {
+
 	public static ArrayList<Arrest> arrestList = new ArrayList<Arrest>();
 
 	public static void main(String[] args){
+
 		fillArrestList();
-		
+
 		//sort arrestList by location
 		Arrest[] sorted = arrestList.toArray(new Arrest[arrestList.size()]);
 		sorted = MergeSort.mergeSort(sorted);
-		System.out.println();
+		System.out.println("\nPrinting Sorted:");
 		for(Arrest a:sorted){
 			System.out.println(a.toString());
 		}		
-		
-		System.out.println();
 
-		//search arrestList by location
-		BinarySearch.binSearch(sorted, new Location(39.3208685519,-76.5652449141) );
+		System.out.println("\n\nPrinting Search Result:\n" + 
+				sorted[BinarySearch.binSearch(sorted, new Location(39.2970007586, -76.5793864662))].toString());
+
+		Location tofind = new Location(39.2970007586, -76.5793864662);
+		
+		//change last parameter for different threshold---------------------VVVVV
+		ArrayList<Arrest> closestList =  findClosestArrests(sorted, tofind, 0.005);
+
+		Arrest[] closefind = closestList.toArray(new Arrest[closestList.size()]);
+		System.out.println("\nPrinting the # of close arrests:\n" 
+				+ closefind.length + "\n\nPrinting the close arrests:");
+
+		for(Arrest c: closefind){
+			System.out.println(c.toString());
+		}	
 	}
-	
+
+	private static ArrayList<Arrest> findClosestArrests(/*TYPE MAY BE CHANGED*/Arrest[] arrests, Location spot, double threshold){
+		ArrayList<Arrest> closest = new ArrayList<Arrest>();
+
+		for (int i = 0; i < arrests.length; i++){
+			if(spot.withinRegion(arrests[i].getLocation(), threshold)){
+				if (arrests[i].getLocation().compareTo(spot) != 0){
+					closest.add(arrests[i]);
+				}
+			}
+		}
+		return closest;
+	}
+
+
 	private static void fillArrestList(){
 		ArrayList<ArrayList<String>> list = readInput();
 		System.out.println(list.get(0).toString());
 
-		for(int i = 1; i < 11; i++){
+		for(int i = 1; i < 111; i++){
 			int arrestId = stringToArrestId(list.get(i).get(0));
 			int age = stringToAge(list.get(i).get(1));
 			String sex = list.get(i).get(2);
@@ -54,12 +79,12 @@ public class DataManipulation {
 			Arrest a = new Arrest(arrestId,	age, sex, race, date, time,	
 					arrestLocation,	incidentOffense, incidentLocation, charge,
 					chargeDescription, district, post, neighborhood, location);
-			
+
 			arrestList.add(a);
-			System.out.println(a.toString());
+			//System.out.println(a.toString());
 		}
 	}
-	
+
 	private static Date stringToDate(String string) {
 		if(string.equals("blank")){
 			return new Date(-1,-1,-1);
@@ -68,8 +93,8 @@ public class DataManipulation {
 		int d = Integer.parseInt(temp[0]);
 		int m = Integer.parseInt(temp[1]);
 		int y = Integer.parseInt(temp[2]);
-		
-//		System.out.println(y + " "+m+" "+ d);
+
+		//		System.out.println(y + " "+m+" "+ d);
 		return new Date(d,m,y);
 	}
 	private static Time stringToTime(String string) {
@@ -79,8 +104,8 @@ public class DataManipulation {
 		String[] temp = string.split("[:]");
 		int h = Integer.parseInt(temp[0]);
 		int m = Integer.parseInt(temp[1]);
-		
-//		System.out.println(h+ " "+m);
+
+		//		System.out.println(h+ " "+m);
 		return new Time(h,m);
 	}
 	private static int stringToPost(String s){
@@ -93,7 +118,7 @@ public class DataManipulation {
 			return -1;
 		return Integer.parseInt(s);
 	}
-	
+
 	private static int stringToAge(String s){
 		if(s.equals("blank"))
 			return -1;
@@ -108,7 +133,7 @@ public class DataManipulation {
 		String[] locationPoints = loc.split("[,]");
 		double x = Double.parseDouble(locationPoints[0]);
 		double y = Double.parseDouble(locationPoints[1]);
-//		System.out.println(x + " " + y);
+		//		System.out.println(x + " " + y);
 		return new Location(x,y);
 	}
 
