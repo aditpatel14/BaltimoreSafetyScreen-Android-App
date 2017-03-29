@@ -41,8 +41,6 @@ public class DataManipulation {
 		for(Arrest c: closefind){
 			System.out.println(c);
 		}	
-		
-		
 	}
 
 	private static ArrayList<Arrest> findClosestArrests(/*TYPE MAY BE CHANGED*/Arrest[] arrests, Location spot, double threshold){

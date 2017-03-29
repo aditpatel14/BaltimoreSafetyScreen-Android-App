@@ -24,25 +24,21 @@ public class DataManipulation {
 			System.out.println(a);
 		}		
 
-		//search Test
 		System.out.println("\n\nPrinting Search Result:\n" + 
 				sorted[BinarySearch.binSearch(sorted, new Location(39.2970007586, -76.5793864662))].toString());
 
-		//closest location search test
 		Location tofind = new Location(39.2970007586, -76.5793864662);
 		
 		//change last parameter for different threshold---------------------VVVVV
 		ArrayList<Arrest> closestList =  findClosestArrests(sorted, tofind, 0.005);
 
 		Arrest[] closefind = closestList.toArray(new Arrest[closestList.size()]);
-		System.out.println("\nPrinting the # of close arrests:\n" + closefind.length + "\n\nPrinting the close arrests:");
+		System.out.println("\nPrinting the # of close arrests:\n" 
+				+ closefind.length + "\n\nPrinting the close arrests:");
 
-		//prints the closest arrests
 		for(Arrest c: closefind){
 			System.out.println(c);
 		}	
-		
-		
 	}
 
 	private static ArrayList<Arrest> findClosestArrests(/*TYPE MAY BE CHANGED*/Arrest[] arrests, Location spot, double threshold){
@@ -50,7 +46,6 @@ public class DataManipulation {
 
 		for (int i = 0; i < arrests.length; i++){
 			if(spot.withinRegion(arrests[i].getLocation(), threshold)){
-				//dosen't add toFind, adds all the ones around it.
 				if (arrests[i].getLocation().compareTo(spot) != 0){
 					closest.add(arrests[i]);
 				}
