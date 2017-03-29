@@ -13,7 +13,7 @@ public class DataManipulation {
 	public static ArrayList<Arrest> arrestList = new ArrayList<Arrest>();
 
 	public static void main(String[] args){
-
+		//fills a static arraylist
 		fillArrestList();
 
 		//sort arrestList by location
@@ -21,7 +21,7 @@ public class DataManipulation {
 		sorted = MergeSort.mergeSort(sorted);
 		System.out.println("\nPrinting Sorted:");
 		for(Arrest a:sorted){
-			System.out.println(a.toString());
+			System.out.println(a);
 		}		
 
 		System.out.println("\n\nPrinting Search Result:\n" + 
@@ -30,14 +30,14 @@ public class DataManipulation {
 		Location tofind = new Location(39.2970007586, -76.5793864662);
 		
 		//change last parameter for different threshold---------------------VVVVV
-		ArrayList<Arrest> closestList =  findClosestArrests(sorted, tofind, 0.005);
+		ArrayList<Arrest> closestList =  findClosestArrests(sorted, tofind, 0.00005);
 
 		Arrest[] closefind = closestList.toArray(new Arrest[closestList.size()]);
 		System.out.println("\nPrinting the # of close arrests:\n" 
 				+ closefind.length + "\n\nPrinting the close arrests:");
 
 		for(Arrest c: closefind){
-			System.out.println(c.toString());
+			System.out.println(c);
 		}	
 	}
 
@@ -59,7 +59,8 @@ public class DataManipulation {
 		ArrayList<ArrayList<String>> list = readInput();
 		System.out.println(list.get(0).toString());
 
-		for(int i = 1; i < 111; i++){
+		//for(int i = 1; i < list.size(); i++){
+		for(int i = 1; i < 1000; i++){
 			int arrestId = stringToArrestId(list.get(i).get(0));
 			int age = stringToAge(list.get(i).get(1));
 			String sex = list.get(i).get(2);
@@ -101,11 +102,15 @@ public class DataManipulation {
 		if(string.equals("blank")){
 			return new Time(-1,-1);
 		}
-		String[] temp = string.split("[:]");
-		int h = Integer.parseInt(temp[0]);
+		String[] temp = string.split("[.:]");
+		int h = 0;
+		
+		if(temp.length < 2){
+			h = Integer.parseInt(temp[0]);
+			return new Time(h,0);
+		}
 		int m = Integer.parseInt(temp[1]);
 
-		//		System.out.println(h+ " "+m);
 		return new Time(h,m);
 	}
 	private static int stringToPost(String s){

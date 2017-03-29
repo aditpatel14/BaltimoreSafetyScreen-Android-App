@@ -44,14 +44,21 @@ public class Arrest implements Comparable<Arrest>{
     
 	@Override
 	public String toString() {
-		return "Arrest [ArrestID=" + ArrestID + ", age=" + age + ", sex=" + sex
-				+ ", race=" + race + ", date=" + date + ", time=" + time
-				+ ", arrestLocation=" + arrestLocation + ", incidentOffence="
-				+ incidentOffence + ", incidentLocation=" + incidentLocation
-				+ ", charge=" + charge + ", chargeDescription="
-				+ chargeDescription + ", district=" + district + ", post="
-				+ post + ", Neighborhood=" + Neighborhood + ", location="
-				+ location + "]";
+		String s = String.format("%-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-100s %-35s %-35s %-40s %-40s",
+				ArrestID,
+				age,
+				sex,
+				race,
+				date,
+				time,
+				arrestLocation,
+				incidentOffence,
+				incidentLocation,
+				charge,
+				chargeDescription,
+				district,
+				post,Neighborhood,location);
+		return s;
 	}
 
 	@Override
