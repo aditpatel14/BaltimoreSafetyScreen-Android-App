@@ -1,16 +1,27 @@
 import java.util.ArrayList;
 
 public class EdgeWeightedGraph {
-	private final int V;
-	private int E;
-	private ArrayList<Edge>[] adj;
+	private int E, V, vertexID;
+	private ArrayList<Vertex> vertices; 
+	public ArrayList<Edge>[] adj;
 	
 	public EdgeWeightedGraph(int V){
 		this.V = V;
-		this.E = E;
-		adj = (ArrayList<Edge>[]) new ArrayList[V];
-		for (int v = 0; v < V; v++)
+		this.E = vertexID = 0;
+		vertices = new ArrayList<Vertex>();
+		adj = (ArrayList<Edge>[]) new ArrayList[this.V];
+		for (int v = 0; v < V; v++){
 			adj[v] = new ArrayList<Edge>();
+		}
+	}
+	
+	public void addVertex(Arrest a){
+		if (vertexID < V){
+			Vertex v = new Vertex(a,vertexID++);
+			vertices.add(v);
+		}else{
+			System.out.println("Max Number Of Vertices added");
+		}
 	}
 	
 	public void addEdge(Edge e){
@@ -20,12 +31,34 @@ public class EdgeWeightedGraph {
 		E++;
 	}
 	
+	public Vertex vertexIDtoVertex(int id){
+		for (Vertex v: vertices){
+			if(v.uid == id){
+				return v;
+			}
+		}
+		return null;
+	}
+	
+	public Vertex arrestToVertex(Arrest a){
+		for (Vertex v: vertices){
+			if (v.arrest.compareTo(a) == 0){
+				return v;
+			}
+		}
+		return null;
+	}
+	
 	public Iterable<Edge> adj(int v){
 		return adj[v];
 	}
 	
 	public int V(){
 		return V;
+	}
+	
+	public int vertexID(){
+		return vertexID;
 	}
 	
 	public int E(){

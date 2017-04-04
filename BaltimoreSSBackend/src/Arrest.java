@@ -60,7 +60,7 @@ public class Arrest implements Comparable<Arrest>{
 				post,Neighborhood,location);
 		return s;
 	}
-
+	
 	@Override
 	public int compareTo(Arrest o) {
 		if(this.location.compareTo(o.location) == 1){

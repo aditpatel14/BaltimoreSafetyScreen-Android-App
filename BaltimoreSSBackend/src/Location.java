@@ -1,5 +1,3 @@
-
-
 public class Location implements Comparable<Location>{
 
     private double xcrd;
