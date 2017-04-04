@@ -47,7 +47,158 @@
 
                 tools:context="com.company.group18.baltimoress.MapsActivity" />
 
+            <RelativeLayout
+                android:id="@+id/RelativeLayout01"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:id="@+id/LinearLayout01"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/ArrestID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ArrestID: "
+                        android:textStyle="bold"
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="16dp" />
+
+                    <TextView
+                        android:id="@+id/gender"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="45dp" />
+
+                    <TextView
+                        android:id="@+id/age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Age: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="73dp" />
+
+                    <TextView
+                        android:id="@+id/Race"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:text="Race: " />
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="101dp" />
+
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Time: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="131dp" />
+
+                    <TextView
+                        android:id="@+id/ArrestLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Arrest Location: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="162dp" />
+
+                    <TextView
+                        android:id="@+id/inncidentLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Incident Location: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="193dp" />
+
+                    <TextView
+                        android:id="@+id/neighbourhood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:text="Neighborhood: " />
+
+                    <TextView
+                        android:id="@+id/incidentOffense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="incidentOffense: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="224dp" />
+
+                    <TextView
+                        android:id="@+id/charge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Charge: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="257dp" />
+
+                    <TextView
+                        android:id="@+id/chargeDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:text="Charge Description: " />
+
+                    <TextView
+                        android:id="@+id/district"
+                        android:layout_width="match_parent"
+                        android:textStyle="bold"
+
+                        android:layout_height="wrap_content"
+                        android:text="District: " />
+
+                    <TextView
+                        android:id="@+id/post"
+                        android:layout_width="match_parent"
+                        android:textStyle="bold"
+
+                        android:layout_height="wrap_content"
+                        android:text="Post: " />
+
+
+                </LinearLayout>
+            </RelativeLayout>
+
         </LinearLayout>
+
+
+
+
     </ScrollView>
 
 </LinearLayout>

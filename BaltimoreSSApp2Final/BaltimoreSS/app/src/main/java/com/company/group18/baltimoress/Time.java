@@ -28,9 +28,9 @@ public class Time {
 
     @Override
     public String toString() {
-        return "Time{" +
+        return "[" +
                 "hour=" + hour +
                 ", minute=" + minute +
-                '}';
+                ']';
     }
 }
