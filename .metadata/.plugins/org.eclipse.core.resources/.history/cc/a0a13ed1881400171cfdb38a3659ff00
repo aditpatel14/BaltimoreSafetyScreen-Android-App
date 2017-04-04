@@ -65,7 +65,7 @@ public class DataManipulation {
 		System.out.println(list.get(0).toString());
 
 		//for(int i = 1; i < list.size(); i++){
-		for(int i = 1; i < 100; i++){
+		for(int i = 1; i < 1000; i++){
 			int arrestId = stringToArrestId(list.get(i).get(0));
 			int age = stringToAge(list.get(i).get(1));
 			String sex = list.get(i).get(2);

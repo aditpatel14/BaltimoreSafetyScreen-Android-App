@@ -47,7 +47,7 @@ public class DataManipulation {
 
 	private static ArrayList<Arrest> findClosestArrests(/*TYPE MAY BE CHANGED*/Arrest[] arrests, Location spot, double threshold){
 		ArrayList<Arrest> closest = new ArrayList<Arrest>();
-
+		
 		for (int i = 0; i < arrests.length; i++){
 			if(spot.withinRegion(arrests[i].getLocation(), threshold)){
 				//dosen't add toFind, adds all the ones around it.
@@ -65,7 +65,7 @@ public class DataManipulation {
 		System.out.println(list.get(0).toString());
 
 		//for(int i = 1; i < list.size(); i++){
-		for(int i = 1; i < 100; i++){
+		for(int i = 1; i < 1000; i++){
 			int arrestId = stringToArrestId(list.get(i).get(0));
 			int age = stringToAge(list.get(i).get(1));
 			String sex = list.get(i).get(2);
@@ -207,10 +207,6 @@ public class DataManipulation {
 	}
 
 
-	/**Method used to write test case results to output.txt file
-	 * 
-	 * @param s, String to be written to output.txt
-	 */
 	private static void writeToFile(String s){
 		try {	
 			FileWriter f = new FileWriter("data/output.txt", true);
