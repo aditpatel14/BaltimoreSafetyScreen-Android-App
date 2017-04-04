@@ -11,4 +11,8 @@ public class Vertex implements Comparable<Vertex> {
 	public int compareTo(Vertex other) {
 		return arrest.compareTo(other.arrest);
 	}
+	
+	public String toString(){
+		return arrest.toString();
+	}
 }
