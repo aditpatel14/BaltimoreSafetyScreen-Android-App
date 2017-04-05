@@ -10,7 +10,6 @@ public class EdgeWeightedGraph {
 		this.V = V;
 		this.E = vertexID = 0;
 		vertices = new ArrayList<Vertex>();
-		edges = new ArrayList<Edge>();
 		adj = (ArrayList<Edge>[]) new ArrayList[this.V];
 		for (int v = 0; v < V; v++){
 			adj[v] = new ArrayList<Edge>();
