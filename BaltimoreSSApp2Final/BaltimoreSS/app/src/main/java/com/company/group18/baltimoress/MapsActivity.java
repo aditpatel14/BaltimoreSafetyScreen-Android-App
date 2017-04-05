@@ -17,6 +17,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -41,12 +42,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Scanner;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener {
+        LocationListener{
 
     public static ArrayList<ArrayList<String>> dataList;
     InputStream in;
@@ -57,6 +59,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Location mLastLocation;
     Marker mCurrLocationMarker;
     LocationRequest mLocationRequest;
+    Hashtable<String,Arrest> markersOnMap = new Hashtable<String, Arrest>();
+
+    public static TextView arrestID, age, sex, race, arrestDate, arrestTime, arrestLocation, incidentLocation,  charge;
+    public static TextView chargeDescription, district, post, neighbourhood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,18 +148,64 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(toronto));
 
         com.company.group18.baltimoress.Location currentUserLocation = new com.company.group18.baltimoress.Location(39.2970007586, -76.5793864662);
+        LatLng tempCurrentUserLocation = new LatLng(currentUserLocation.getXcrd(), currentUserLocation.getYcrd());
 
+        mMap.addMarker(new MarkerOptions()
+                .position(tempCurrentUserLocation)
+                .title("Your Location")
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(tempCurrentUserLocation));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
         ArrayList<Arrest> closestList =  DataManipulation.findClosestArrests(DataManipulation.sorted, currentUserLocation, 0.010);
 
+        int count = 1;
         for(Arrest a: closestList){
             LatLng temp = new LatLng(a.getLocation().getXcrd(), a.getLocation().getYcrd());
-            mMap.addMarker(new MarkerOptions().position(temp).title(a.toString()));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
+
+            mMap.addMarker(new MarkerOptions()
+                    .position(temp)
+                    .title(count+" "+a.getArrestID())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+
+//            mMap.addMarker(new MarkerOptions()
+//                    .position(temp)
+//                    .title(a.getArrestID()+"")
+//                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
             //move map camera
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(temp));
-            mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+
+            markersOnMap.put(count+" "+a.getArrestID(),a);
+
+
+
+            count++;
         }
+        Toast.makeText(MapsActivity.this, markersOnMap.size()+" ", Toast.LENGTH_SHORT).show();// display toast
+
+
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
+        {
+
+            @Override
+            public boolean onMarkerClick(Marker arg0) {
+                if(arg0.getTitle().equals("Your Location")) { // if marker source is clicked
+                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
+                }
+
+                Arrest a = markersOnMap.get(arg0.getTitle());
+
+                if(a != null) {
+//                    Toast.makeText(MapsActivity.this, "they are equal", Toast.LENGTH_SHORT).show();// display toast
+                    setData(a);
+
+                }
+
+                return true;
+            }
+
+        });
 
     }
 
@@ -219,6 +271,36 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
+    public void setData (Arrest arrest){
+        arrestID = (TextView)findViewById(R.id.ArrestID);
+        age = (TextView)findViewById(R.id.age);
+        sex = (TextView)findViewById (R.id.age);
+        race = (TextView)findViewById(R.id.date);
+        arrestDate = (TextView) findViewById(R.id.date);
+        arrestTime = (TextView) findViewById(R.id.time);
+        arrestLocation = (TextView) findViewById(R.id.ArrestLocation);
+        incidentLocation = (TextView) findViewById(R.id.inncidentLocation);
+        charge = (TextView)findViewById (R.id.charge);
+        chargeDescription = (TextView) findViewById(R.id.chargeDescription);
+        district = (TextView)findViewById(R.id.district);
+        post = (TextView)findViewById(R.id.post);
+        neighbourhood = (TextView) findViewById(R.id.neighbourhood );
+
+
+        arrestID.setText("Arrest ID: " + arrest.getArrestID());
+        age.setText("Age: " + arrest.getAge () );
+        sex.setText("Sex: " + arrest.getSex ());
+        race.setText("Race: " + arrest.getRace () );
+        arrestDate.setText("Arrest Date: " + arrest.getDate ());
+        arrestTime.setText("Arrest Time: " + arrest.getTime());
+        arrestLocation.setText("Arrest Location" + arrest.getArrestLocation());
+        incidentLocation.setText("Incident Location: " + arrest.getIncidentLocation());
+        charge.setText("Charge Location: " + arrest.getCharge());
+        chargeDescription.setText("Charge Description: " + arrest.getChargeDescription());
+        neighbourhood.setText("Neighbourhood: " + arrest.getNeighborhood());
+        district.setText("District: " + arrest.getDistrict());
+        post.setText("Post: " + arrest.getPost());
+    }
 
 
 }
