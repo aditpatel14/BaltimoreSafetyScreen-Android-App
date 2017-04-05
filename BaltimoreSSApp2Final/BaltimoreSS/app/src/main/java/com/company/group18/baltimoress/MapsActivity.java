@@ -1,6 +1,6 @@
 
 /*
-outside sources used as tutorials:
+Citing outside sources used as tutorials:
 https://www.androidtutorialpoint.com/intermediate/android-map-app-showing-current-location-android/
 
 http://stackoverflow.com/questions/20762001/how-to-set-seekbar-min-and-max-value
@@ -84,7 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationRequest mLocationRequest;
     Hashtable<String,Arrest> markersOnMap = new Hashtable<String, Arrest>();
 
-    public static TextView arrestID, age, sex, race, arrestDate, arrestTime, arrestLocation, incidentLocation,  charge;
+    public static TextView arrestID, age, sex, race, arrestDate, arrestTime, arrestLocation, incidentOffense, incidentLocation,  charge;
     public static TextView chargeDescription, district, post, neighbourhood;
 
 
@@ -148,12 +148,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void onClick(View view) {
                     new GetCoordinates().execute(searchBar.getText().toString().replace(" ", "+"));
 
-                if(searchBar.getText().equals("Search Location") == false) {
+                if(searchBar.getText().equals("Baltimore") != true) {
                     InputMethodManager inputManager = (InputMethodManager)
                             getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                    inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                            InputMethodManager.HIDE_NOT_ALWAYS);
+                    if(inputManager != null) {
+                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
                 }
             }
         });
@@ -247,6 +249,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             markersOnMap.put(count+" "+a.getArrestID(),a);
             count++;
         }
+        //Closest to your location----------------
+        if(closestList.size()!=0) {
+            Arrest b = closestList.get(0);
+            mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(b.getLocation().getXcrd(), b.getLocation().getYcrd()))
+                    .title(count + " " + b.getArrestID())
+                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+            );
+            setData(b);
+        }
+        //----------------------------------------
+
         Toast.makeText(MapsActivity.this, markersOnMap.size()+" ", Toast.LENGTH_SHORT).show();// display toast
 
 
@@ -349,6 +363,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         arrestDate = (TextView) findViewById(R.id.date);
         arrestTime = (TextView) findViewById(R.id.time);
         arrestLocation = (TextView) findViewById(R.id.ArrestLocation);
+        incidentOffense = (TextView) findViewById(R.id.incidentOffense);
         incidentLocation = (TextView) findViewById(R.id.inncidentLocation);
         charge = (TextView)findViewById (R.id.charge);
         chargeDescription = (TextView) findViewById(R.id.chargeDescription);
@@ -364,6 +379,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         arrestDate.setText("Arrest Date: " + arrest.getDate ()+"\n");
         arrestTime.setText("Arrest Time: " + arrest.getTime()+"\n");
         arrestLocation.setText("Arrest Location: " + arrest.getArrestLocation()+"\n");
+        incidentOffense.setText("Incident Offense: " + arrest.getIncidentOffence()+"\n");
         incidentLocation.setText("Incident Location: " + arrest.getIncidentLocation()+"\n");
         charge.setText("Charge Location: " + arrest.getCharge()+"\n");
         chargeDescription.setText("Charge Description: " + arrest.getChargeDescription()+"\n");
@@ -451,13 +467,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             .position(temp)
                             .title(count+" "+a.getArrestID())
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))
-                            .draggable(true)
                     );
 
 
                     markersOnMap.put(count+" "+a.getArrestID(),a);
                     count++;
                 }
+                //Closest to your location----------------
+                if(closestList.size()!=0) {
+                    Arrest b = closestList.get(0);
+                    mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(b.getLocation().getXcrd(), b.getLocation().getYcrd()))
+                            .title(count + " " + b.getArrestID())
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                    );
+                    setData(b);
+                }
+                //----------------------------------------
                 Toast.makeText(MapsActivity.this, markersOnMap.size()+" ", Toast.LENGTH_SHORT).show();// display toast
 
 
@@ -479,21 +505,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
 
                 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

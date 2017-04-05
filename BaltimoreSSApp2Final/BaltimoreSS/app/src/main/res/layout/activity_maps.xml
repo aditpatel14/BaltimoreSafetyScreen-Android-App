@@ -31,7 +31,7 @@
                     android:ems="10"
                     android:inputType="textPersonName"
                     android:padding="20dp"
-                    android:text="Baltimore " />
+                    android:text="Baltimore" />
 
                 <Button
                     android:id="@+id/button_search"
@@ -143,6 +143,16 @@
                         tools:layout_editor_absoluteY="162dp" />
 
                     <TextView
+                        android:id="@+id/incidentOffense"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Incident Offense: "
+                        android:textStyle="bold"
+
+                        tools:layout_editor_absoluteX="16dp"
+                        tools:layout_editor_absoluteY="224dp" />
+
+                    <TextView
                         android:id="@+id/inncidentLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -152,23 +162,9 @@
                         tools:layout_editor_absoluteX="16dp"
                         tools:layout_editor_absoluteY="193dp" />
 
-                    <TextView
-                        android:id="@+id/neighbourhood"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
 
-                        android:text="Neighborhood: " />
 
-                    <TextView
-                        android:id="@+id/incidentOffense"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="incidentOffense: "
-                        android:textStyle="bold"
 
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:layout_editor_absoluteY="224dp" />
 
                     <TextView
                         android:id="@+id/charge"
@@ -203,6 +199,14 @@
 
                         android:layout_height="wrap_content"
                         android:text="Post: " />
+
+                    <TextView
+                        android:id="@+id/neighbourhood"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+
+                        android:text="Neighborhood: " />
 
 
                 </LinearLayout>
