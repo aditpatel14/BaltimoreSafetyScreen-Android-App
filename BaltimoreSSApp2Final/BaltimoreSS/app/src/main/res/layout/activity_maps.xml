@@ -18,23 +18,37 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editText"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:padding="20dp"
-                android:text="Search Location" />
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/searchEdittext"
+                    android:layout_width="240dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:padding="20dp"
+                    android:text="Baltimore " />
+
+                <Button
+                    android:id="@+id/button_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Search" />
+
+            </LinearLayout>
 
             <SeekBar
-                android:id="@+id/seekBar"
+                android:id="@+id/seekBar2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_weight="1"
-                android:max="7"
-                android:progress="3" />
+                android:progress="60"
+                />
 
             <fragment
                 android:id="@+id/map"
@@ -71,20 +85,20 @@
                         tools:layout_editor_absoluteY="16dp" />
 
                     <TextView
-                        android:id="@+id/gender"
+                        android:id="@+id/age"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gender: "
+                        android:text="Age: "
                         android:textStyle="bold"
 
                         tools:layout_editor_absoluteX="16dp"
                         tools:layout_editor_absoluteY="45dp" />
 
                     <TextView
-                        android:id="@+id/age"
+                        android:id="@+id/sex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Age: "
+                        android:text="Gender: "
                         android:textStyle="bold"
 
                         tools:layout_editor_absoluteX="16dp"

@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class DataManipulation {
 	public static Arrest[] sorted ;
 	public static ArrayList<Arrest> arrestList = new ArrayList<Arrest>();
+	public static int index;
 
 //	public static void setupFromData(){
 //		//fills a static arraylist
@@ -68,8 +69,11 @@ public class DataManipulation {
 
 
 
-	public static ArrayList<Arrest> findClosestArrests(/*TYPE MAY BE CHANGED*/Arrest[] arrests, Location spot, double threshold){
+	public static ArrayList<Arrest> findClosestArrests(Arrest[] arrests, Location spot, double threshold){
 		ArrayList<Arrest> closest = new ArrayList<Arrest>();
+
+		int index = BinarySearch.binSearch(arrests, spot);
+
 		
 		for (int i = 0; i < arrests.length; i++){
 			if(spot.withinRegion(arrests[i].getLocation(), threshold)){
