@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class EdgeWeightedGraph {
 	private int E, V, vertexID;
 	private ArrayList<Vertex> vertices; 
+	private ArrayList<Edge> edges;
 	public ArrayList<Edge>[] adj;
 	
 	public EdgeWeightedGraph(int V){
@@ -28,6 +29,7 @@ public class EdgeWeightedGraph {
 		int v = e.either(), w = e.other(v);
 		adj[v].add(e);
 		adj[w].add(e);
+		edges.add(e);
 		E++;
 	}
 	
@@ -47,6 +49,11 @@ public class EdgeWeightedGraph {
 			}
 		}
 		return null;
+	}
+	
+
+	public ArrayList<Edge> edges() {
+		return edges;
 	}
 	
 	public Iterable<Edge> adj(int v){
