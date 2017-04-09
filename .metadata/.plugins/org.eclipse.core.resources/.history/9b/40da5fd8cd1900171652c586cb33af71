@@ -29,9 +29,7 @@ public class DataManipulation {
 				sorted[BinarySearch.binSearch(sorted, new Location(39.2970007586, -76.5793864662))].toString());
 
 		//closest location search test
-		Arrest a = ClosestArrestFind.find(arrestList, sorted);
-		System.out.println("\n" + a.toString());
-	} 
+	}
 
 	public static ArrayList<Arrest> findClosestArrests(/*TYPE MAY BE CHANGED*/Arrest[] arrests, Location spot, double threshold){
 		ArrayList<Arrest> closest = new ArrayList<Arrest>();
