@@ -1,24 +1,23 @@
 package com.company.group18.baltimoress;
-
 public class Edge implements Comparable<Edge> {
 	private final Vertex v;
 	private final Vertex w;
 	private final double weight;
-	
+
 	public Edge(Vertex v, Vertex w, double weight){
 		this.v = v;
 		this.w = w;
 		this.weight = weight;
 	}
-	
+
 	public double weight(){
 		return weight;
 	}
-	
+
 	public int either(){
 		return v.uid;
 	}
-	
+
 	public int other(int vertex){
 		if (vertex == v.uid)
 			return w.uid;
@@ -26,7 +25,7 @@ public class Edge implements Comparable<Edge> {
 			return v.uid;
 		else throw new IllegalArgumentException();
 	}
-	
+
 	public int compareTo(Edge that){
 		if (this.weight() < that.weight())
 			return -1;
@@ -35,8 +34,13 @@ public class Edge implements Comparable<Edge> {
 		else
 			return 0;
 	}
-	
+
 	public String toString(){
-		return String.format("%d-%d %.5f", v, w, weight);
+		return v.uid + " " + w.uid + " " + weight;
 	}
+
+	public Arrest getNonCentralArrest(){
+		return w.arrest;
+	}
+
 }

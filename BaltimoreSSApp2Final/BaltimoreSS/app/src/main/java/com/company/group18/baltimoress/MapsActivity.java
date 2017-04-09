@@ -152,10 +152,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     InputMethodManager inputManager = (InputMethodManager)
                             getSystemService(Context.INPUT_METHOD_SERVICE);
 
-                    if(inputManager != null) {
-                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+
+
+                    View focusedView = getCurrentFocus();
+                    if (focusedView != null) {
+                        inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(),
                                 InputMethodManager.HIDE_NOT_ALWAYS);
                     }
+//                    if(inputManager != null) {
+//                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
+//                                InputMethodManager.HIDE_NOT_ALWAYS);
+//                    }
                 }
             }
         });
@@ -250,8 +257,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             count++;
         }
         //Closest to your location----------------
-        if(closestList.size()!=0) {
-            Arrest b = closestList.get(0);
+        if(DataManipulation.sorted.length!=0) {
+            Arrest b = ClosestArrestFind.find(currentUserLocation);
             mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(b.getLocation().getXcrd(), b.getLocation().getYcrd()))
                     .title(count + " " + b.getArrestID())
@@ -474,8 +481,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     count++;
                 }
                 //Closest to your location----------------
-                if(closestList.size()!=0) {
-                    Arrest b = closestList.get(0);
+                if(DataManipulation.sorted.length!=0) {
+                    Arrest b = ClosestArrestFind.find(currentUserLocation);
                     mMap.addMarker(new MarkerOptions()
                             .position(new LatLng(b.getLocation().getXcrd(), b.getLocation().getYcrd()))
                             .title(count + " " + b.getArrestID())

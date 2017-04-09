@@ -5,9 +5,10 @@ public class BinarySearch {
 	public static int binSearch(Arrest[] array, Location location){
 		int hi = array.length-1;
 		int lo = 0;
+		int mid = lo + (hi - lo)/2;
 		
 		while (lo <= hi){
-			int mid = lo + (hi - lo)/2;
+			mid = lo + (hi - lo)/2;
 			
 			Location temp = array[mid].getLocation();
 			
@@ -19,6 +20,6 @@ public class BinarySearch {
 				return mid;
 			}
 		}
-		return -1;
+		return mid;
 	}
 }
