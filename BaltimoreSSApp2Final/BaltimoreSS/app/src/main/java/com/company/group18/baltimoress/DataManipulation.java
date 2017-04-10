@@ -1,71 +1,16 @@
 package com.company.group18.baltimoress;
 
-
-import android.widget.Toast;
-
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 public class DataManipulation {
 	public static Arrest[] sorted ;
 	public static ArrayList<Arrest> arrestList = new ArrayList<Arrest>();
 	public static int index;
-
-//	public static void setupFromData(){
-//		//fills a static arraylist
-//		fillArrestList();
-//
-//		//sort arrestList by location
-//		sorted = arrestList.toArray(new Arrest[arrestList.size()]);
-//		sorted = MergeSort.mergeSort(sorted);
-////		System.out.println("\nPrinting Sorted:");
-////		for(Arrest a:sorted){
-////			System.out.println(a);
-////		}
-//	}
-
-//	public static void main(String[] args){
-//		//fills a static arraylist
-//		fillArrestList();
-//
-//		//sort arrestList by location
-//		sorted = arrestList.toArray(new Arrest[arrestList.size()]);
-//		sorted = MergeSort.mergeSort(sorted);
-////		System.out.println("\nPrinting Sorted:");
-////		for(Arrest a:sorted){
-////			System.out.println(a);
-////		}
-//
-//		//search Test
-//		//System.out.println("\n\nPrinting Search Result:\n" + sorted[BinarySearch.binSearch(sorted, new Location(39.2970007586, -76.5793864662))].toString());
-//
-//		//closest location search test
-//		Location currentUserLocation = new Location(39.2970007586, -76.5793864662);
-//
-//		//change last parameter for different threshold---------------------VVVVV
-//		ArrayList<Arrest> closestList =  findClosestArrests(sorted, currentUserLocation, 0.005);
-//
-//		Arrest[] closefind = closestList.toArray(new Arrest[closestList.size()]);
-//		//System.out.println("\nPrinting the # of close arrests:\n" + closefind.length + "\n\nPrinting the close arrests:");
-//
-//		//prints the closest arrests
-////		for(Arrest c: closefind){
-////			//System.out.println(c);
-////		}
-//
-//		EdgeWeightedGraph g = new EdgeWeightedGraph(closefind.length);
-//
-//		//g.addEdge(new Edge(currentUserLocation, closestList.get(0));
-//
-//
-//	}
 
 
 
@@ -116,7 +61,6 @@ public class DataManipulation {
 						chargeDescription, district, post, neighborhood, location);
 
 				arrestList.add(a);
-				//System.out.println(a.toString());
 			}
 		}
 	}
@@ -131,9 +75,9 @@ public class DataManipulation {
 		int m = Integer.parseInt(temp[1]);
 		int y = Integer.parseInt(temp[2]);
 
-		//		System.out.println(y + " "+m+" "+ d);
 		return new Date(d,m,y);
 	}
+
 	private static Time stringToTime(String string) {
 		if(string.equals("blank")){
 			return new Time(-1,-1);
@@ -149,11 +93,13 @@ public class DataManipulation {
 
 		return new Time(h,m);
 	}
+
 	private static int stringToPost(String s){
 		if(s.equals("blank"))
 			return -1;
 		return Integer.parseInt(s);
 	}
+
 	private static int stringToArrestId(String s){
 		if(s.equals("blank"))
 			return -1;
@@ -209,17 +155,5 @@ public class DataManipulation {
 		return Math.sqrt(distance);
 	}
 
-	private static void writeToFile(String s){
-		try {	
-			FileWriter f = new FileWriter("data/output.txt", true);
-			PrintWriter out = new PrintWriter(new BufferedWriter(f));
-			out.println(s);
-			out.close();
-		} catch (FileNotFoundException e){
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }
 

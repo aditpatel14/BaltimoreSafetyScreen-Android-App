@@ -1,8 +1,5 @@
 package com.company.group18.baltimoress;
 
-/**
- * Created by Adit on 2017-03-22.
- */
 public class Arrest implements Comparable<Arrest>{
     private int ArrestID;
     private int age;
@@ -96,40 +93,20 @@ public class Arrest implements Comparable<Arrest>{
 		return ArrestID;
 	}
 
-	public void setArrestID(int arrestID) {
-		ArrestID = arrestID;
-	}
-
 	public int getAge() {
 		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public String getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-
 	public String getRace() {
 		return race;
 	}
 
-	public void setRace(String race) {
-		this.race = race;
-	}
-
 	public Date getDate() {
 		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public Time getTime() {
@@ -144,71 +121,36 @@ public class Arrest implements Comparable<Arrest>{
 		return arrestLocation;
 	}
 
-	public void setArrestLocation(String arrestLocation) {
-		this.arrestLocation = arrestLocation;
-	}
-
 	public String getIncidentOffence() {
 		return incidentOffence;
-	}
-
-	public void setIncidentOffence(String incidentOffence) {
-		this.incidentOffence = incidentOffence;
 	}
 
 	public String getIncidentLocation() {
 		return incidentLocation;
 	}
 
-	public void setIncidentLocation(String incidentLocation) {
-		this.incidentLocation = incidentLocation;
-	}
-
 	public String getCharge() {
 		return charge;
-	}
-
-	public void setCharge(String charge) {
-		this.charge = charge;
 	}
 
 	public String getChargeDescription() {
 		return chargeDescription;
 	}
 
-	public void setChargeDescription(String chargeDescription) {
-		this.chargeDescription = chargeDescription;
-	}
-
 	public String getDistrict() {
 		return district;
-	}
-
-	public void setDistrict(String district) {
-		this.district = district;
 	}
 
 	public int getPost() {
 		return post;
 	}
 
-	public void setPost(int post) {
-		this.post = post;
-	}
-
 	public String getNeighborhood() {
 		return Neighborhood;
-	}
-
-	public void setNeighborhood(String neighborhood) {
-		Neighborhood = neighborhood;
 	}
 
 	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
-	}
 }

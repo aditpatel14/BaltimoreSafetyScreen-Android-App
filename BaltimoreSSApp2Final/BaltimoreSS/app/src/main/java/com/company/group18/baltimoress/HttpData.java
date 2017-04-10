@@ -1,11 +1,5 @@
 package com.company.group18.baltimoress;
 
-/**
- * Created by Adit on 2017-04-04.
- */
-
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -1,6 +1,7 @@
 
 /*
 Citing outside sources used as tutorials:
+
 https://www.androidtutorialpoint.com/intermediate/android-map-app-showing-current-location-android/
 
 http://stackoverflow.com/questions/20762001/how-to-set-seekbar-min-and-max-value
@@ -15,16 +16,11 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.content.res.AssetManager;
 import android.location.Location;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.provider.ContactsContract;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -52,15 +48,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Scanner;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -91,7 +84,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
 
         dataList = new ArrayList<ArrayList<String>>();
         if(DataManipulation.arrestList.size() <= 0) {
@@ -159,10 +151,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(),
                                 InputMethodManager.HIDE_NOT_ALWAYS);
                     }
-//                    if(inputManager != null) {
-//                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-//                                InputMethodManager.HIDE_NOT_ALWAYS);
-//                    }
+
                 }
             }
         });
@@ -170,10 +159,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         sBar = (SeekBar)findViewById(R.id.seekBar2);
-
         sBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
-
-
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //Toast.makeText(MapsActivity.this, progress+"", Toast.LENGTH_SHORT).show();// display toast
@@ -181,20 +167,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
-
-
-
-
-
     }
 
 
@@ -218,17 +195,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
         }
 
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//
-//        // Add a marker in Sydney and move the camera
+
 //        LatLng toronto = new LatLng(43.6532, -79.38);
 //        mMap.addMarker(new MarkerOptions().position(toronto).title("Toronto"));
 //        mMap.moveCamera(CameraUpdateFactory.newLatLng(toronto));
 
         com.company.group18.baltimoress.Location currentUserLocation = new com.company.group18.baltimoress.Location(39.2970007586, -76.5793864662);
+
         LatLng tempCurrentUserLocation = new LatLng(currentUserLocation.getXcrd(), currentUserLocation.getYcrd());
 
         mMap.addMarker(new MarkerOptions()
@@ -256,6 +229,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             markersOnMap.put(count+" "+a.getArrestID(),a);
             count++;
         }
+
         //Closest to your location----------------
         if(DataManipulation.sorted.length!=0) {
             Arrest b = ClosestArrestFind.find(currentUserLocation);
@@ -293,14 +267,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    public static void addMarkersFromSearch(){
-
-    }
-
-    public static void searchAgain(){
-
-    }
-
     protected synchronized void buildGoogleApiClient() {
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -309,8 +275,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .build();
         mGoogleApiClient.connect();
     }
-
-
 
     @Override
     public void onConnected(Bundle bundle) {
@@ -327,13 +291,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-
-    }
+    public void onConnectionSuspended(int i) {}
 
     @Override
     public void onLocationChanged(Location location) {
-
         mLastLocation = location;
         if (mCurrLocationMarker != null) {
             mCurrLocationMarker.remove();
@@ -347,20 +308,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
         mCurrLocationMarker = mMap.addMarker(markerOptions);
 
-
         //stop location updates
         if (mGoogleApiClient != null) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }
-
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-
-    }
-
-
+    public void onConnectionFailed(ConnectionResult connectionResult) {}
 
     public void setData (Arrest arrest){
         arrestID = (TextView)findViewById(R.id.ArrestID);
@@ -438,13 +393,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 Toast.makeText(MapsActivity.this, lat+" "+lng, Toast.LENGTH_SHORT).show();// display toast
 
-
-
-
-
                 mMap.clear();
                 markersOnMap.clear();
-
 
 
                 com.company.group18.baltimoress.Location currentUserLocation = new com.company.group18.baltimoress.Location(Double.parseDouble(lat), Double.parseDouble(lng));
@@ -453,7 +403,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(lat.length() <= 0 || lng.length() <= 0){
                     currentUserLocation = new com.company.group18.baltimoress.Location(39.2970007586, -76.5793864662);
                     tempCurrentUserLocation = new LatLng(currentUserLocation.getXcrd(), currentUserLocation.getYcrd());
-
                 }
 
                 mMap.addMarker(new MarkerOptions()
@@ -512,8 +461,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
 
                 });
-
-
 
                 if(dialog.isShowing())
                     dialog.dismiss();

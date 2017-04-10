@@ -6,9 +6,8 @@ public class Location implements Comparable<Location>{
     private double xcrd;
     private double ycrd;
 
-    public Location(){
+    public Location(){}
 
-    }
     public Location(double xcrd, double ycrd) {
         this.xcrd = xcrd;
         this.ycrd = ycrd;
