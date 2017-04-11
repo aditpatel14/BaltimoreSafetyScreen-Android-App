@@ -17,8 +17,10 @@ public class DataManipulation {
 	public static ArrayList<Arrest> findClosestArrests(Arrest[] arrests, Location spot, double threshold){
 		ArrayList<Arrest> closest = new ArrayList<Arrest>();
 
-		int index = BinarySearch.binSearch(arrests, spot);
-
+		//Added after pushing to playstore----------------------------------
+		Arrest closestArrestToSpot = BinarySearch.binSearch(arrests, spot);
+		closest.add(closestArrestToSpot);
+		//==================================================================
 		
 		for (int i = 0; i < arrests.length; i++){
 			if(spot.withinRegion(arrests[i].getLocation(), threshold)){
