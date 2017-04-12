@@ -158,38 +158,65 @@ public class Arrest implements Comparable<Arrest>{
 		this.time = time;
 	}
 
+	/**
+	 * @return get the arrest location 
+	 */
 	public String getArrestLocation() {
 		return arrestLocation;
 	}
 
+	/**
+	 * @return the incident offence 
+	 */
 	public String getIncidentOffence() {
 		return incidentOffence;
 	}
-
+	
+	/**
+	 * @return where lcoation of the incident 
+	 */
 	public String getIncidentLocation() {
 		return incidentLocation;
 	}
 
+	/**
+	 * @return the charge 
+	 */
 	public String getCharge() {
 		return charge;
 	}
 
+	/**
+	 * @return the charge description of the crime 
+	 */
 	public String getChargeDescription() {
 		return chargeDescription;
 	}
 
+	/**
+	 * @return get the district where the crime happened at 
+	 */
 	public String getDistrict() {
 		return district;
 	}
 
+	/**
+	 * @return the postal number where the crime happened at 
+	 */
 	public int getPost() {
 		return post;
 	}
-
+	
+	/**
+	 * @return which neighborhood the crime happened at 
+	 */
 	public String getNeighborhood() {
 		return Neighborhood;
 	}
 
+	/**
+	 * @return the location of the location (latitude, longitude)
+	 */
 	public Location getLocation() {
 		return location;
 	}

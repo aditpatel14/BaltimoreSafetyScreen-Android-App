@@ -18,6 +18,10 @@ public class HttpData {
 
     }
 
+    /**
+     * @param requestURL The url you request to access 
+     * @return the data you get from the online file 
+     */
     public String getHTTPData(String requestURL)
     {
         URL url;
@@ -33,6 +37,7 @@ public class HttpData {
             conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
 
             int responseCode = conn.getResponseCode();
+            //Reading from the online file 
             if(responseCode == HttpsURLConnection.HTTP_OK)
             {
                 String line;

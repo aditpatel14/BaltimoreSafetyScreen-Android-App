@@ -7,13 +7,23 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/**
+ * Class is used to manipulate the data 
+ */
 public class DataManipulation {
-	public static Arrest[] sorted ;
+	
+	public static Arrest[] sorted;
 	public static ArrayList<Arrest> arrestList = new ArrayList<Arrest>();
 	public static int index;
 
 
 
+	/**
+	 * @param arrests an array of arrest to search through 
+	 * @param spot the centre of the location want want to search from 
+	 * @param threshold the radius of from the location 
+	 * @return the arrest in the given from in the spot and threshold
+	 */
 	public static ArrayList<Arrest> findClosestArrests(Arrest[] arrests, Location spot, double threshold){
 		ArrayList<Arrest> closest = new ArrayList<Arrest>();
 
@@ -34,6 +44,9 @@ public class DataManipulation {
 	}
 
 
+	/**
+	 * @param dl the arraylist of arraylist of string data from the file 
+	 */
 	public static void fillArrestList(ArrayList<ArrayList<String>> dl){
 		ArrayList<ArrayList<String>> list = dl;
 //		System.out.println(list.get(0).toString());
@@ -68,6 +81,11 @@ public class DataManipulation {
 	}
 
 
+	/**
+	 * Purpose is to convert string into Date object 
+	 * @param string the date in string form
+	 * @return the Date as date object 
+	 */
 	private static Date stringToDate(String string) {
 		if(string.equals("blank")){
 			return new Date(-1,-1,-1);
@@ -80,6 +98,11 @@ public class DataManipulation {
 		return new Date(d,m,y);
 	}
 
+	/**
+	 * Purpose is to convert string into time object
+	 * @param string the string as Time 
+	 * @return the Time (as Time object) 
+	 */
 	private static Time stringToTime(String string) {
 		if(string.equals("blank")){
 			return new Time(-1,-1);
@@ -96,24 +119,45 @@ public class DataManipulation {
 		return new Time(h,m);
 	}
 
+	/**
+	 * Converts the postal code from string to int 
+	 * @param s Postal code (string) 
+	 * @return the postal code 
+	 */
 	private static int stringToPost(String s){
 		if(s.equals("blank"))
 			return -1;
 		return Integer.parseInt(s);
 	}
 
+	/**
+	 * Converts the Arrest ID from string to int 
+	 * @param s Arrest ID (as String) 
+	 * @return returns the postal code (int) 
+	 */
 	private static int stringToArrestId(String s){
 		if(s.equals("blank"))
 			return -1;
 		return Integer.parseInt(s);
 	}
 
+	/**
+	 * Converts the Age from string to int 
+	 * @param s the age (string) 
+	 * @return the age (int) 
+	 */
 	private static int stringToAge(String s){
 		if(s.equals("blank"))
 			return -1;
 		return Integer.parseInt(s);
 	}
 
+	/**
+	 * 
+	 * Converts the latitude and longitude to location object 
+	 * @param loc the latitude and longitude 
+	 * @return The location as Location object 
+	 */
 	private static Location stringToLocation(String loc) {
 		if(loc.equals("blank")){
 			return new Location(-1,-1);
