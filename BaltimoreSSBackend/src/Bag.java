@@ -1,5 +1,11 @@
 import java.util.Iterator;
 
+/******************************************************************************
+ * This Bag class was used from
+ *  <a href="http://algs4.cs.princeton.edu/13stacks/Bag.java.html">Bag.java</a></a>
+ *  by Robert Sedgewick and Kevin Wayne
+ ******************************************************************************/
+
 public class Bag<Item> implements Iterable<Item> {
 	private Node first;
 	
@@ -30,6 +36,11 @@ public class Bag<Item> implements Iterable<Item> {
 			Item item = current.item;
 			current = current.next;
 			return item;
+		}
+
+		@Override
+		public void remove() {
+
 		}
 	}
 }

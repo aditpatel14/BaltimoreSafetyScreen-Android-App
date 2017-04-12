@@ -1,5 +1,6 @@
 /**
- * Created by Adit on 2017-03-22.
+ * Each instance of arrest represents an entry in the dataset. The location, description of the
+ * arrest, and a unique ID number are all instance variables of the class.
  */
 public class Arrest implements Comparable<Arrest>{
     private int ArrestID;
@@ -19,7 +20,26 @@ public class Arrest implements Comparable<Arrest>{
     private int post;
     private String Neighborhood;
     private Location location;
-	
+
+	/**
+	 * initializes an arrest object.
+	 *
+	 * @param arrestID unique ID associated with arrest
+	 * @param age age of offender
+	 * @param sex sex of offender
+	 * @param race race of offender
+	 * @param date instance of Date.java representing the date of the arrest
+	 * @param time instance of Time.java representing the time of the arrest
+	 * @param arrestLocation address at which the arrest occurred
+	 * @param incidentOffence description of the offence
+	 * @param incidentLocation address at which the incident occurred
+	 * @param charge charge recieved by the offender
+	 * @param chargeDescription description of charge
+	 * @param district district at which arrest occurred
+	 * @param post post at which arrest occurred
+	 * @param neighborhood neighbourhood at which arrest occurred
+	 * @param location latitude and longitude of arrest location
+	 */
     public Arrest(int arrestID, int age, String sex, String race, Date date,
 			Time time, String arrestLocation, String incidentOffence,
 			String incidentLocation, String charge, String chargeDescription,
@@ -41,26 +61,56 @@ public class Arrest implements Comparable<Arrest>{
 		Neighborhood = neighborhood;
 		this.location = location;
 	}
-    
+
+	/**
+	 * returns string representation of arrest
+	 *
+	 * @return string representation of arrest
+	 */
 	@Override
 	public String toString() {
-		String s = String.format("%-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-35s %-100s %-35s %-35s %-40s %-40s",
-				ArrestID,
-				age,
-				sex,
-				race,
-				date,
-				time,
-				arrestLocation,
-				incidentOffence,
-				incidentLocation,
-				charge,
-				chargeDescription,
-				district,
-				post,Neighborhood,location);
-		return s;
+		return "ArrestID=" + ArrestID +
+				", age=" + age +
+				", sex='" + sex + '\'' +
+				"\n, race='" + race + '\'' +
+				", date=" + date +
+				", time=" + time +
+				", arrestLocation='" + arrestLocation + '\'' +
+				", incidentOffence='" + incidentOffence + '\'' +
+				", incidentLocation='" + incidentLocation + '\'' +
+				", charge='" + charge + '\'' +
+				", chargeDescription='" + chargeDescription + '\'' +
+				", district='" + district + '\'' +
+				", post=" + post +
+				", Neighborhood='" + Neighborhood + '\'' +
+				", location=" + location ;
 	}
-	
+	//	@Override
+//	public String toString() {
+//		String s = String.format("%-10s \n%-3s \n%-10s \n%-35s \n%-35s %-35s %-35s %-35s %-35s %-35s %-100s %-35s %-35s %-40s %-40s",
+//				ArrestID,
+//				age,
+//				sex,
+//				race,
+//				date,
+//				time,
+//				arrestLocation,
+//				incidentOffence,
+//				incidentLocation,
+//				charge,
+//				chargeDescription,
+//				district,
+//				post,Neighborhood,location);
+//		return s;
+//	}
+
+	/**
+	 * compares two arrest instances
+	 *
+	 * @param o instance of arrest to be compared
+	 * @return 1 if latitude and/or longitude is greater than that of location o, -1 of latitude
+	 * and/or longitude if less than that of location o, 0 if they are equal
+	 */
 	@Override
 	public int compareTo(Arrest o) {
 		if(this.location.compareTo(o.location) == 1){
@@ -72,123 +122,101 @@ public class Arrest implements Comparable<Arrest>{
 		return 0;
 	}
 
+	//The following are accessors for the instance variables
 	public int getArrestID() {
 		return ArrestID;
-	}
-
-	public void setArrestID(int arrestID) {
-		ArrestID = arrestID;
 	}
 
 	public int getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	public String getSex() {
 		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
 	}
 
 	public String getRace() {
 		return race;
 	}
 
-	public void setRace(String race) {
-		this.race = race;
-	}
-
 	public Date getDate() {
 		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public Time getTime() {
 		return time;
 	}
 
+	/**
+	 * change the time of the arrest
+	 *
+	 * @param time new instance of Time to replace the current time
+	 */
 	public void setTime(Time time) {
 		this.time = time;
 	}
 
+	/**
+	 * @return get the arrest location 
+	 */
 	public String getArrestLocation() {
 		return arrestLocation;
 	}
 
-	public void setArrestLocation(String arrestLocation) {
-		this.arrestLocation = arrestLocation;
-	}
-
+	/**
+	 * @return the incident offence 
+	 */
 	public String getIncidentOffence() {
 		return incidentOffence;
 	}
-
-	public void setIncidentOffence(String incidentOffence) {
-		this.incidentOffence = incidentOffence;
-	}
-
+	
+	/**
+	 * @return where lcoation of the incident 
+	 */
 	public String getIncidentLocation() {
 		return incidentLocation;
 	}
 
-	public void setIncidentLocation(String incidentLocation) {
-		this.incidentLocation = incidentLocation;
-	}
-
+	/**
+	 * @return the charge 
+	 */
 	public String getCharge() {
 		return charge;
 	}
 
-	public void setCharge(String charge) {
-		this.charge = charge;
-	}
-
+	/**
+	 * @return the charge description of the crime 
+	 */
 	public String getChargeDescription() {
 		return chargeDescription;
 	}
 
-	public void setChargeDescription(String chargeDescription) {
-		this.chargeDescription = chargeDescription;
-	}
-
+	/**
+	 * @return get the district where the crime happened at 
+	 */
 	public String getDistrict() {
 		return district;
 	}
 
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
+	/**
+	 * @return the postal number where the crime happened at 
+	 */
 	public int getPost() {
 		return post;
 	}
-
-	public void setPost(int post) {
-		this.post = post;
-	}
-
+	
+	/**
+	 * @return which neighborhood the crime happened at 
+	 */
 	public String getNeighborhood() {
 		return Neighborhood;
 	}
 
-	public void setNeighborhood(String neighborhood) {
-		Neighborhood = neighborhood;
-	}
-
+	/**
+	 * @return the location of the location (latitude, longitude)
+	 */
 	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
-	}
 }

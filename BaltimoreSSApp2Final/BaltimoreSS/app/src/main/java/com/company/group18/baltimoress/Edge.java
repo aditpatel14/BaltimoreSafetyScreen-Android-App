@@ -54,6 +54,15 @@ public class Edge implements Comparable<Edge> {
 	}
 
 	/**
+	 * Method that checks if a vertex is either end of the edge
+	 * @param c is the vertex to look for
+	 * @return True if it is, false otherwise
+	 */
+	public boolean contains(Arrest c){
+		return v.arrest.compareTo(c) == 0 || w.arrest.compareTo(c) == 0;
+	}
+
+	/**
 	 * compares the weight of one vertex to another
 	 *
 	 * @param that instance of Vertex to be compared
@@ -87,4 +96,12 @@ public class Edge implements Comparable<Edge> {
 		return w.arrest;
 	}
 
+	/**
+	 * returns arrest object assoc. with vertex v
+	 *
+	 * @return arrest object assoc. with v
+	 */
+	public Arrest getCentralArrest(){
+		return v.arrest;
+	}
 }

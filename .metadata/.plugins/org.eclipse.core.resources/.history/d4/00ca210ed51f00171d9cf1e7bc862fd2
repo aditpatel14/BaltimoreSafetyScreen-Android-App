@@ -1,0 +1,8 @@
+/******************************************************************************
+ * This IndexMinPQ class was used from
+ *  <a href="http://algs4.cs.princeton.edu/24pq/IndexMinPQ.java.html">IndexMinPQ.java</a></a>
+ *  by Robert Sedgewick and Kevin Wayne
+ ******************************************************************************/
+public class IndexMinPQ {
+
+}

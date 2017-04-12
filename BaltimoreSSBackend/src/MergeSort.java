@@ -1,7 +1,15 @@
 import java.util.Arrays;
 
+/**
+ * Class that implements Merge Sort
+ */
 public class MergeSort {
 
+	/**
+	 * Sorts a list of type Arrest by recursively calling itself and the other merging method mergeSortedArr
+	 * @param temp the auxiliary array required for merge sort implementation
+	 * @return properly sorted list
+	 */
 	public static Arrest[] mergeSort(Arrest[] temp){
 		if(temp.length == 1)
 			return (Arrest[]) temp;
@@ -11,7 +19,13 @@ public class MergeSort {
 		Arrest[] answer = mergeSortedArr((Arrest[]) left, (Arrest[]) right);
 		return answer;
 	}
-	
+
+	/**
+	 * Sorts a list of type Arrest by recursively calling itself and the other merging method mergeSort
+	 * @param left the left most side othe list
+	 * @param right the right most side of the list
+	 * @return properly sorted list
+	 */
 	public static Arrest[] mergeSortedArr(Arrest[] left, Arrest[] right){
 		int len = left.length + right.length;
 		Arrest[] mergedArr = new Arrest[len];

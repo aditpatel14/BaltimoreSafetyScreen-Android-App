@@ -120,4 +120,12 @@ public class EdgeWeightedGraph {
 	public int E(){
 		return E;
 	}
+	
+	/**
+	 * getter for vertices in graph
+	 * @return the arraylist of vertices
+	 */
+	public ArrayList<Vertex> getVertices() {
+		return vertices;
+	}
 }

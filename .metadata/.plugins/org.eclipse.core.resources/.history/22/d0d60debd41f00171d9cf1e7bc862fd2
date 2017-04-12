@@ -1,0 +1,8 @@
+/******************************************************************************
+ * This PrimMST class was used from
+ *  <a href="http://algs4.cs.princeton.edu/43mst/PrimMST.java.html">PrimMST.java</a></a>
+ *  by Robert Sedgewick and Kevin Wayne
+ ******************************************************************************/
+public class IndexMinPQ {
+
+}

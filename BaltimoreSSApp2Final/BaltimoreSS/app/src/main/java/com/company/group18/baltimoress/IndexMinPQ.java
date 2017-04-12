@@ -1,46 +1,12 @@
-package com.company.group18.baltimoress;
-
-/******************************************************************************
- *  Compilation:  javac IndexMinPQ.java
- *  Execution:    java IndexMinPQ
- *  Dependencies: StdOut.java
- *
- *  Minimum-oriented indexed PQ implementation using a binary heap.
- *
+package com.company.group18.baltimoress; /******************************************************************************
+ * This IndexMinPQ class was used from
+ *  <a href="http://algs4.cs.princeton.edu/24pq/IndexMinPQ.java.html">IndexMinPQ.java</a></a>
+ *  by Robert Sedgewick and Kevin Wayne
  ******************************************************************************/
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-/**
- *  The {@code IndexMinPQ} class represents an indexed priority queue of generic keys.
- *  It supports the usual <em>insert</em> and <em>delete-the-minimum</em>
- *  operations, along with <em>delete</em> and <em>change-the-key</em> 
- *  methods. In order to let the client refer to keys on the priority queue,
- *  an integer between {@code 0} and {@code maxN - 1}
- *  is associated with each key�the client uses this integer to specify
- *  which key to delete or change.
- *  It also supports methods for peeking at the minimum key,
- *  testing if the priority queue is empty, and iterating through
- *  the keys.
- *  <p>
- *  This implementation uses a binary heap along with an array to associate
- *  keys with integers in the given range.
- *  The <em>insert</em>, <em>delete-the-minimum</em>, <em>delete</em>,
- *  <em>change-key</em>, <em>decrease-key</em>, and <em>increase-key</em>
- *  operations take logarithmic time.
- *  The <em>is-empty</em>, <em>size</em>, <em>min-index</em>, <em>min-key</em>,
- *  and <em>key-of</em> operations take constant time.
- *  Construction takes time proportional to the specified capacity.
- *  <p>
- *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/24pq">Section 2.4</a> of
- *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
- *
- *  @author Robert Sedgewick
- *  @author Kevin Wayne
- *
- *  @param <Key> the generic type of key on this priority queue
- */
 public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer> {
     private int maxN;        // maximum number of elements on PQ
     private int n;           // number of elements on PQ
@@ -325,4 +291,3 @@ public class IndexMinPQ<Key extends Comparable<Key>> implements Iterable<Integer
         }
     }
 }
-

@@ -1,6 +1,5 @@
 package com.company.group18.baltimoress;
 
-
 import java.util.ArrayList;
 
 public class ClosestArrestFind {
@@ -9,8 +8,8 @@ public class ClosestArrestFind {
         Arrest toReturn = null;
         double shortestDistance = 10000000000.0;
 
-        //change last parameter for different threshold---------------------VVVVV
-        ArrayList<Arrest> closestList =  DataManipulation.findClosestArrests(DataManipulation.sorted, toFind, MapsActivity.barValue);
+        //change last parameter for different threshold-----------------------------------------------------------VVVVV
+        ArrayList<Arrest> closestList =  DataManipulation.findClosestArrests(DataManipulation.sorted, toFind, 0.05);
 
         Arrest[] closefind = closestList.toArray(new Arrest[closestList.size()]);
         System.out.println("\nPrinting the # of close arrests:\n" + closefind.length + "\n\nPrinting the close arrests:");
@@ -53,13 +52,16 @@ public class ClosestArrestFind {
             g.addEdge(toAdd);
         }
 
-
+        //use prims algorithm to find the edge with the smallest distance closest to the arrest searched against
         Edge min = new Edge(null,null, 10000000);
-        for (Edge e: edges){
-            if (e.weight() < min.weight()){
+        PrimMST p = new PrimMST(g);
+        for (Edge e: p.edges()){
+        	if (e.weight() < min.weight() && e.contains(found)){
                 min = e;
             }
         }
+
+        //return the arrest closest to the one searched against
         System.out.println(min.weight());
         return min.getNonCentralArrest();
     }
