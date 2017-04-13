@@ -1,12 +1,21 @@
 
+
+
 /*
 Citing outside sources used as tutorials:
+-some of the material used here was not in the scope of the course the following websites were used
+for learning purposes and as a guide to help develop the android app.
 
 https://www.androidtutorialpoint.com/intermediate/android-map-app-showing-current-location-android/
-
 http://stackoverflow.com/questions/20762001/how-to-set-seekbar-min-and-max-value
-
 https://github.com/eddydn/GetCoordinatesGeocode/blob/master/app/src/main/java/dev/edmt/getcoordinatesgeocode/MainActivity.java
+http://danielnugent.blogspot.ca/2015/06/updated-jsonparser-with.html
+ */
+
+
+/**
+ * This class controls the main activity on android. It is the activity that starts up when you open
+ * the app
  */
 
 package com.company.group18.baltimoress;
@@ -143,8 +152,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(searchBar.getText().equals("Baltimore") != true) {
                     InputMethodManager inputManager = (InputMethodManager)
                             getSystemService(Context.INPUT_METHOD_SERVICE);
-
-
 
                     View focusedView = getCurrentFocus();
                     if (focusedView != null) {
@@ -317,6 +324,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {}
 
+    /*
+    This method is used to dynamically fill the information about each arrest when you click
+    on a map marker.
+     */
     public void setData (Arrest arrest){
         arrestID = (TextView)findViewById(R.id.ArrestID);
         age = (TextView)findViewById(R.id.age);
@@ -352,7 +363,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-
+    /*
+    Inner private class used to get the coordinates from google api call.
+     */
     private class GetCoordinates extends AsyncTask<String,Void,String> {
         ProgressDialog dialog = new ProgressDialog(MapsActivity.this);
 
